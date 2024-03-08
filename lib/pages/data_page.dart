@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sekawan_mobile/components/post_widget.dart';
-import 'package:sekawan_mobile/models/post.dart';
-import 'package:sekawan_mobile/services/data_repository.dart';
+
+import '../components/post_widget.dart';
+import '../models/post.dart';
+import '../services/data_repository.dart';
 
 class DataPage extends StatefulWidget {
   const DataPage({super.key});

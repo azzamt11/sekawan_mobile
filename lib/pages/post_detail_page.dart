@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sekawan_mobile/models/post.dart';
+
+import '../models/post.dart';
 
 class PostDetailPage extends StatefulWidget {
   final Post data;
@@ -13,7 +14,9 @@ class _PostDetailPageState extends State<PostDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container()
+      body: Container(
+
+      )
     );
   }
 

@@ -55,11 +55,17 @@ class Comment {
   String? email;
   String? body;
 
+  String? error;
+
   void setData(Map<String, dynamic> data) {
     id= data['id'];
     postId= data['post_id'];
     name= data['name'];
     email= data['email'];
     body= data['body'];
+  }
+
+  void setError(String error) {
+    this.error= error;
   }
 }

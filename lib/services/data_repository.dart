@@ -1,6 +1,6 @@
-import 'package:sekawan_mobile/models/post.dart';
-import 'package:sekawan_mobile/models/user.dart';
-import 'package:sekawan_mobile/services/api_client.dart';
+import '../models/post.dart';
+import '../models/user.dart';
+import '../services/api_client.dart';
 
 class DataRepository {
 

@@ -11,7 +11,7 @@ class ApiClient {
     return [];
   }
 
-  Future<List<User>> getUser() async {
+  Future<List<User>> getUsers() async {
     return [];
   }
 }

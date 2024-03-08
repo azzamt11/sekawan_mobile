@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sekawan_mobile/components/post_widget.dart';
+import 'package:sekawan_mobile/models/post.dart';
+import 'package:sekawan_mobile/services/data_repository.dart';
 
 class DataPage extends StatefulWidget {
   const DataPage({super.key});
@@ -9,6 +11,14 @@ class DataPage extends StatefulWidget {
 }
 
 class _DataPageState extends State<DataPage> {
+  List<Post> posts= [];
+  
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size= MediaQuery.of(context).size;
@@ -40,5 +50,12 @@ class _DataPageState extends State<DataPage> {
       );
     }
     return postsWidget;
+  }
+
+  Future<void> getData() async {
+    List<Post> data= await DataRepository().getPosts();
+    setState(() {
+      posts= data;
+    });
   }
 }

@@ -4,6 +4,7 @@ class User {
   String? name;
   String? username;
   String? email;
+  String? photo;
   UserAddress? address;
 
   String? error;
@@ -13,6 +14,7 @@ class User {
     name= data['name'];
     username= data['username'];
     email= data['email'];
+    photo= data['photo'];
     address= data['address'];
   }
 

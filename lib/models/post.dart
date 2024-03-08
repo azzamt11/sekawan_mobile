@@ -8,6 +8,7 @@ class Post {
   String? body;
   int? like;
   int? comment;
+  bool? liked;
   List<Comment> comments= [];
   User user= User();
 
@@ -25,6 +26,10 @@ class Post {
         comments.add(data[i]);
       }
     }
+  }
+
+  void likePost() {
+    liked= true;
   }
 
   void getUser(List<User> data) {

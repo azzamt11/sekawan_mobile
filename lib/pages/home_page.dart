@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import './data_page.dart';
 import './profile_page.dart';
@@ -144,8 +145,8 @@ Widget getBody(var size) {
 
   List<Widget> tabIcon(bool isActive, int index, String text) {
     List<IconData> iconList= [
-      Icons.folder,
-      Icons.person
+      FontAwesomeIcons.folder,
+      FontAwesomeIcons.person
     ];
     return <Widget>[
       Icon(

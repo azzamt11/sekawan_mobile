@@ -21,7 +21,7 @@ class _DataPageState extends State<DataPage> {
     return Container(
       height: size.height,
       width: size.width,
-      color: Colors.white,
+      color: Colors.black12,
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:sekawan_mobile/pages/data_page.dart';
-import 'package:sekawan_mobile/pages/profile_page.dart';
+
+import './data_page.dart';
+import './profile_page.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -39,18 +40,18 @@ class _HomePageState extends State<HomePage> {
         }
       },
       child: SizedBox(
-          height: size.height,
-          width: size.width,
-          child: Stack(
-            children: [
-              Scaffold(
-                  backgroundColor: Colors.white,
-                  resizeToAvoidBottomInset: false,
-                  bottomNavigationBar: getFooter(size),
-                  body: getBody(size)
-              ),
-            ],
-          )
+        height: size.height,
+        width: size.width,
+        child: Stack(
+          children: [
+            Scaffold(
+              backgroundColor: Colors.white,
+              resizeToAvoidBottomInset: false,
+              bottomNavigationBar: getFooter(size),
+              body: getBody(size)
+            ),
+          ],
+        )
       )
     );
   }
@@ -62,62 +63,62 @@ class _HomePageState extends State<HomePage> {
       duration: const Duration(milliseconds: 300),
       builder: (BuildContext context, double position, Widget? child) {
         return SizedBox(
-            height: 60 - position,
-            width: size.width,
-            child: Stack(children: [
-              Positioned(
-                  top: 0,
-                  child: Container(
-                      height: 59,
-                      width: size.width,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          top: BorderSide(width: 1, color: Colors.black12),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5, right: 5),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              getTabMenu(
-                                  tabIcon(activeTab==0, 0, "Data"),
-                                  0
-                              ),
-                              getTabMenu(
-                                  tabIcon(activeTab==1, 1, "Profile"),
-                                  1
-                              ),                             
-                            ]
-                        ),
-                      )
-                  )
-              )
-            ])
-        );
-      },
-    );
-  }
-
-  Widget getBody(var size) {
-    return RefreshIndicator(
-        onRefresh: () async{
-          //on refresh
-        },
-        color: Colors.white,
-        child: SizedBox(
-          height: size.height,
+          height: 60 - position,
           width: size.width,
-          child: IndexedStack(
-            key: ValueKey<int>(activeTab),
-            index: activeTab,
-            children: const [
-              DataPage(),
-              ProfilePage()
-            ],
-          )
+          child: Stack(children: [
+            Positioned(
+              top: 0,
+              child: Container(
+                height: 59,
+                width: size.width,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    top: BorderSide(width: 1, color: Colors.black12),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 5, right: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      getTabMenu(
+                        tabIcon(activeTab==0, 0, "Data"),
+                        0
+                      ),
+                      getTabMenu(
+                        tabIcon(activeTab==1, 1, "Profile"),
+                        1
+                      ),                             
+                    ]
+                  ),
+                )
+              )
+            )
+          ])
+      );
+    },
+  );
+}
+
+Widget getBody(var size) {
+  return RefreshIndicator(
+      onRefresh: () async{
+        //on refresh
+      },
+      color: Colors.white,
+      child: SizedBox(
+        height: size.height,
+        width: size.width,
+        child: IndexedStack(
+          key: ValueKey<int>(activeTab),
+          index: activeTab,
+          children: const [
+            DataPage(),
+            ProfilePage()
+          ],
         )
+      )
     );
   }
 

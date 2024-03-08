@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sekawan_mobile/pages/initial_page.dart';
+
+import './pages/initial_page.dart';
 
 void main() {
   runApp(const MyApp());

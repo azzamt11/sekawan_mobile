@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sekawan_mobile/pages/home_page.dart';
+
+import './home_page.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
@@ -33,8 +34,8 @@ class _InitialPageState extends State<InitialPage> {
       width: size.width,
       child: Center(
         child: SizedBox(
-          height: 100,
-          width: 100,
+          height: 140,
+          width: 140,
           child: Stack(
             children: [
               logo(),
@@ -48,8 +49,8 @@ class _InitialPageState extends State<InitialPage> {
 
   Widget logo() {
     return Container(
-      height: 100,
-      width: 100,
+      height: 140,
+      width: 140,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
@@ -66,8 +67,8 @@ class _InitialPageState extends State<InitialPage> {
       duration: const Duration(seconds: 1),
       builder: (BuildContext context, double param, Widget? child) {
         return Container(
-          height: 100,
-          width: 100,
+          height: 140,
+          width: 140,
           color: Color.fromRGBO(255, 255, 255, 1- param),
         );
       }

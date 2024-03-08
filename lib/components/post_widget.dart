@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sekawan_mobile/models/post.dart';
+import 'package:sekawan_mobile/pages/post_detail_page.dart';
 
 class PostWidget extends StatefulWidget {
   final Post data;
@@ -13,6 +14,16 @@ class PostWidget extends StatefulWidget {
 }
 
 class _PostWidgetState extends State<PostWidget> {
+  Post post= Post();
+
+  @override
+  void initState() {
+    setState(() {
+      post= widget.data;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size= MediaQuery.of(context).size;
@@ -55,7 +66,18 @@ class _PostWidgetState extends State<PostWidget> {
               ],
             )
           ),
-          SizedBox()
+          GestureDetector(
+            onTap: () {
+              getFloatingSnackBar(size, 'Mohon maaf, fitur ini belum tersedia', context);
+            },
+            child: const SizedBox(
+              height: 50,
+              width: 50,
+              child: Center(
+                child: Icon(Icons.share, size: 25)
+              )
+            )
+          )
         ],
       )
     );
@@ -69,7 +91,7 @@ class _PostWidgetState extends State<PostWidget> {
         children: [
           CircleAvatar(
             backgroundImage: NetworkImage(
-              widget.data.user.photo?? 'https://picsum.photos/250?image=9'
+              post.user.photo?? 'https://picsum.photos/250?image=9'
             ),
           ),
           Positioned(
@@ -95,7 +117,7 @@ class _PostWidgetState extends State<PostWidget> {
       child: Column(
         children: [
           Text(
-            widget.data.user.name?? 'No-name',
+            post.user.name?? 'No-name',
             style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
           ),
           SizedBox(
@@ -131,7 +153,7 @@ class _PostWidgetState extends State<PostWidget> {
       width: size.width,
       padding: const EdgeInsets.all(10),
       child: Text(
-        widget.data.body?? 'Empty',
+        post.body?? 'Empty',
         style: const TextStyle(fontSize: 26),
         softWrap: true,
         textAlign: TextAlign.left,
@@ -146,11 +168,11 @@ class _PostWidgetState extends State<PostWidget> {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
-          widget.data.like!> 0 
+          post.like!> 0 
           ? const Icon(FontAwesomeIcons.heart, color: Colors.redAccent) 
           : const SizedBox(),
           Text(
-            widget.data.like.toString(), 
+            post.like.toString(), 
             style: const TextStyle(fontSize: 26, color: Colors.grey)
           )
         ],
@@ -170,7 +192,7 @@ class _PostWidgetState extends State<PostWidget> {
           reactionButton(
             size,
             FontAwesomeIcons.heart, 
-            (widget.data.liked?? false)? Colors.red: Colors.black, 
+            (post.liked?? false)? Colors.red: Colors.black, 
             'Like'
           ),
           const SizedBox(width: 10),
@@ -186,31 +208,65 @@ class _PostWidgetState extends State<PostWidget> {
   }
 
   Widget reactionButton(var size, IconData icon, Color color, String text) {
-    return Container(
-      height: 35,
-      width: size.width/2,
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(17.5),
-        color: Colors.white,
-        border: Border.all(width: 1, color: Colors.grey)
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(
-            icon, 
-            size: 25, 
-            color: color
-          ),
-          const SizedBox(width: 10),
-          Text(
-            text, 
-            style: const TextStyle(fontSize: 26, color: Colors.black)
-          )
-        ],
+    return GestureDetector(
+      onTap: () {
+        if(text=='Like') {
+          post.likePost();
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context)=> 
+              PostDetailPage(data: post)
+            )
+          );
+        }
+      },
+      child: Container(
+        height: 35,
+        width: size.width/2,
+        margin: const EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(17.5),
+          color: Colors.white,
+          border: Border.all(width: 1, color: Colors.grey)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              icon, 
+              size: 25, 
+              color: color
+            ),
+            const SizedBox(width: 10),
+            Text(
+              text, 
+              style: const TextStyle(fontSize: 26, color: Colors.black)
+            )
+          ],
+        )
       )
     );
   }
+
+   void getFloatingSnackBar(var size, String string, BuildContext context) {
+    SnackBar floatingSnackBar = SnackBar(
+      content: Text(
+        string,
+        textAlign: TextAlign.center,
+        style: const TextStyle(color: Colors.white),
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.black,
+      margin:  EdgeInsets.only(
+          bottom: (size.height / 2) - 40,
+          left: size.width / 2 - 100,
+          right: size.width / 2 - 100),
+      duration: const Duration(seconds: 2),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(floatingSnackBar);
+  }
+
 }

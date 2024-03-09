@@ -90,6 +90,7 @@ class _PostWidgetState extends State<PostWidget> {
       child: Stack(
         children: [
           CircleAvatar(
+            radius: 42.5,
             backgroundImage: NetworkImage(
               post.user.photo?? 'https://picsum.photos/250?image=9'
             ),

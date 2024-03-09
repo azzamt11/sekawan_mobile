@@ -34,10 +34,26 @@ class _DataPageState extends State<DataPage> {
       width: size.width,
       color: Colors.black12,
       child: SingleChildScrollView(
-        child: Column(
+        child: posts.isNotEmpty? Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: getPosts(size),
+          children:  getPosts(size),
+        ) : getLoader(size)
+      )
+    );
+  }
+
+  Widget getLoader(var size) {
+    return SizedBox(
+      height: size.height,
+      width: size.width,
+      child: const Center(
+        child: SizedBox(
+          height: 30,
+          width: 30,
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.black12,
+          )
         )
       )
     );

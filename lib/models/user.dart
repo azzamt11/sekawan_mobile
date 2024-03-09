@@ -5,7 +5,6 @@ class User {
   String? username;
   String? email;
   String? photo;
-  UserAddress? address;
 
   String? error;
 
@@ -15,7 +14,6 @@ class User {
     username= data['username'];
     email= data['email'];
     photo= data['photo'];
-    address= data['address'];
   }
 
   void setError(String error) {

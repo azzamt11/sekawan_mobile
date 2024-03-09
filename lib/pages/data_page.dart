@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sekawan_mobile/providers/state_provider.dart';
 
 import '../components/post_widget.dart';
 import '../models/post.dart';
@@ -12,13 +14,7 @@ class DataPage extends StatefulWidget {
 }
 
 class _DataPageState extends State<DataPage> {
-  List<Post> posts= [];
-  
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
+  bool isLoading= false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +30,10 @@ class _DataPageState extends State<DataPage> {
       width: size.width,
       color: Colors.black12,
       child: SingleChildScrollView(
-        child: posts.isNotEmpty? Column(
+        child: !isLoading? Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children:  getPosts(size),
+          children: getPosts(size),
         ) : getLoader(size)
       )
     );
@@ -61,18 +57,13 @@ class _DataPageState extends State<DataPage> {
 
   List<Widget> getPosts(var size) {
     List<Widget> postsWidget= [];
-    for(int i=0; i< posts.length; i++) {
+    int length= context.watch<StateProvider>().data.length;
+    for(int i=0; i< length; i++) {
+      bool liked= context.watch<StateProvider>().data[i].liked ?? false;
       postsWidget.add(
-        PostWidget(data: posts[i])
+        PostWidget(id: i, liked: liked)
       );
     }
     return postsWidget;
-  }
-
-  Future<void> getData() async {
-    List<Post> data= await DataRepository().getPosts();
-    setState(() {
-      posts= data;
-    });
   }
 }

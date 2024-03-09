@@ -19,7 +19,6 @@ class ApiClient {
           }
       );
       var decodedResponse = json.decode(response.body);
-      debugPrint('decodedResponse= ${decodedResponse.toString()}');
       for (int i = 0; i < decodedResponse.length; i++) {
         Post post= Post();
         post.setData(decodedResponse[i]);
@@ -71,7 +70,6 @@ class ApiClient {
           }
       );
       var decodedResponse = json.decode(response.body);
-      debugPrint('decodedResponse= ${decodedResponse.toString()}');
       for (int i = 0; i < decodedResponse.length; i++) {
         User user= User();
         user.setData(decodedResponse[i]);

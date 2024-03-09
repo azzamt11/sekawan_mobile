@@ -1,26 +1,28 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:sekawan_mobile/models/post.dart';
 import 'package:sekawan_mobile/pages/post_detail_page.dart';
+import 'package:sekawan_mobile/providers/state_provider.dart';
 
 class PostWidget extends StatefulWidget {
-  final Post data;
-  const PostWidget({super.key, required this.data});
+  final int id;
+  final bool liked;
+  const PostWidget({Key? key, required this.id, required this.liked}) : super(key: key);
 
   @override
   State<PostWidget> createState() => _PostWidgetState();
 }
 
 class _PostWidgetState extends State<PostWidget> {
-  Post post= Post();
+  bool liked= false;
 
   @override
   void initState() {
-    setState(() {
-      post= widget.data;
-    });
+    liked= widget.liked;
     super.initState();
   }
 
@@ -36,6 +38,7 @@ class _PostWidgetState extends State<PostWidget> {
         children: [
           header(size),
           body(size),
+          const SizedBox(height: 10),
           mini(size),
           reaction(size)
         ],
@@ -84,15 +87,17 @@ class _PostWidgetState extends State<PostWidget> {
   }
 
   Widget avatar() {
+    Post data= context.watch<StateProvider>().data[widget.id];
     return SizedBox(
-      height: 85,
-      width: 85,
+      height: 61,
+      width: 61,
       child: Stack(
         children: [
           CircleAvatar(
-            radius: 42.5,
+            radius: 30.5,
             backgroundImage: NetworkImage(
-              post.user.photo?? 'https://picsum.photos/250?image=9'
+              data.user.photo
+              ?? 'https://ui-avatars.com/api/?name=${data.user.name!.split(' ').join('+')}?background=random'
             ),
           ),
           Positioned(
@@ -113,13 +118,15 @@ class _PostWidgetState extends State<PostWidget> {
   }
 
   Widget name() {
+    Post data= context.watch<StateProvider>().data[widget.id];
     return SizedBox(
-      height: 50,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            post.user.name?? 'No-name',
-            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
+            data.user.name?? "user-${data.user.id.toString()}",
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)
           ),
           SizedBox(
             height: 30,
@@ -129,7 +136,7 @@ class _PostWidgetState extends State<PostWidget> {
               children: [
                 const Text(
                   '1 Jan 2024',
-                  style: TextStyle(fontSize: 20, color: Colors.grey)
+                  style: TextStyle(fontSize: 17, color: Colors.grey)
                 ),
                 Container(
                   height: 2,
@@ -140,7 +147,7 @@ class _PostWidgetState extends State<PostWidget> {
                     color: Colors.grey,
                   ),
                 ),
-                const Icon(FontAwesomeIcons.networkWired, size: 15, color: Colors.grey)
+                const Icon(FontAwesomeIcons.globe, size: 15, color: Colors.grey)
               ],
             )
           )
@@ -154,27 +161,34 @@ class _PostWidgetState extends State<PostWidget> {
       width: size.width,
       padding: const EdgeInsets.all(10),
       child: Text(
-        post.body?? 'Empty',
-        style: const TextStyle(fontSize: 26),
-        softWrap: true,
+        context.watch<StateProvider>().data[widget.id].body?? 'Empty',
+        style: const TextStyle(fontSize: 20),
         textAlign: TextAlign.left,
       ),
     );
   }
 
   Widget mini(var size)  {
+    int like= context.watch<StateProvider>().data[widget.id].like?? 0;
+    int comment= context.watch<StateProvider>().data[widget.id].comment?? 0;
     return Container(
       height: 30,
       width: size.width,
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          post.like!> 0 
-          ? const Icon(FontAwesomeIcons.heart, color: Colors.redAccent) 
-          : const SizedBox(),
-          Text(
-            post.like.toString(), 
-            style: const TextStyle(fontSize: 26, color: Colors.grey)
+          like> 0 
+          ? const Icon(FontAwesomeIcons.heart, color: Colors.red, size: 17) 
+          :  const Icon(FontAwesomeIcons.heart, color: Colors.grey, size: 17),
+          const SizedBox(width: 10),
+          like> 0? const Text(
+            "You liked this post", 
+            style: TextStyle(fontSize: 17, color:Colors.grey)
+          ) : Text(
+            "$like likes, $comment comments", 
+            style: TextStyle(fontSize: 17, color:Colors.grey)
           )
         ],
       ) 
@@ -193,13 +207,13 @@ class _PostWidgetState extends State<PostWidget> {
           reactionButton(
             size,
             FontAwesomeIcons.heart, 
-            (post.liked?? false)? Colors.red: Colors.black, 
+            liked? Colors.red: Colors.black, 
             'Like'
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 5),
           reactionButton(
             size,
-            FontAwesomeIcons.heart, 
+            FontAwesomeIcons.message, 
             Colors.black, 
             'Comment'
           ),
@@ -212,23 +226,25 @@ class _PostWidgetState extends State<PostWidget> {
     return GestureDetector(
       onTap: () {
         if(text=='Like') {
-          post.likePost();
+          setState(() {
+            liked= !liked;
+          });
+          context.read<StateProvider>().like(widget.id);
         } else {
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context)=> 
-              PostDetailPage(data: post)
+              PostDetailPage(data: context.watch<StateProvider>().data[widget.id])
             )
           );
         }
       },
       child: Container(
-        height: 35,
-        width: size.width/2,
-        margin: const EdgeInsets.symmetric(horizontal: 5),
+        height: 40,
+        width: size.width/2- 12.5,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(17.5),
+          borderRadius: BorderRadius.circular(12.5),
           color: Colors.white,
           border: Border.all(width: 1, color: Colors.grey)
         ),
@@ -238,13 +254,16 @@ class _PostWidgetState extends State<PostWidget> {
           children: [
             Icon(
               icon, 
-              size: 25, 
+              size: 20, 
               color: color
             ),
             const SizedBox(width: 10),
             Text(
               text, 
-              style: const TextStyle(fontSize: 26, color: Colors.black)
+              style: TextStyle(
+                fontSize: 17, 
+                color: text== 'Like' && liked? Colors.red: Colors.black
+              )
             )
           ],
         )

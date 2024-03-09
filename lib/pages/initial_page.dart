@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sekawan_mobile/models/post.dart';
+import 'package:sekawan_mobile/providers/state_provider.dart';
+import 'package:sekawan_mobile/services/data_repository.dart';
 
 import './home_page.dart';
 
@@ -81,12 +85,39 @@ class _InitialPageState extends State<InitialPage> {
       colorParam= 1;
     });
     await Future.delayed(const Duration(seconds: 2));
-    if (!context.mounted) return;
-    Navigator.push(
-      context, MaterialPageRoute(
-        builder: (context)=> const HomePage()  
-      )
+    try {
+      List<Post> data= await DataRepository().getPosts();
+      if (!context.mounted) return;
+      await context.read<StateProvider>().setData(data);
+      if(data.isNotEmpty) {
+        if (!context.mounted) return;
+        Navigator.push(
+          context, MaterialPageRoute(
+            builder: (context)=> const HomePage()  
+          )
+        );
+      }
+    } catch(e) {
+      debugPrint('azzam_debug; ${e.toString()}');
+    }
+  }
+
+  void getFloatingSnackBar(var size, String string, BuildContext context) {
+    SnackBar floatingSnackBar = SnackBar(
+      content: Text(
+        string,
+        textAlign: TextAlign.center,
+        style: const TextStyle(color: Colors.white),
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.black,
+      margin:  EdgeInsets.only(
+          bottom: (size.height / 2) - 40,
+          left: size.width / 2 - 100,
+          right: size.width / 2 - 100),
+      duration: const Duration(seconds: 2),
     );
+    ScaffoldMessenger.of(context).showSnackBar(floatingSnackBar);
   }
 
 }

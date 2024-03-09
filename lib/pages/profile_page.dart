@@ -46,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget header(var size) {
     return Container(
-      height: 370,
+      height: 410,
       width: size.width,
       color: Colors.white,
       child: Stack(
@@ -95,9 +95,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   Text(
                     'Universitas Islam Negeri Maulana Malik Ibrahim Malang',
                     style: TextStyle(fontSize: 18),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20)
                 ],
               )
             )
@@ -154,7 +153,7 @@ class _ProfilePageState extends State<ProfilePage> {
             'Jakarta, Indonesia',
             'Hybrid',
             'Working as a part of a team to develop and maintain Jojonomic Officeless Mobile Application.',
-            'Skills: Flutter and Android Development'    
+            'Skills: Flutter'    
           ),
           textBox(
             size,
@@ -165,7 +164,7 @@ class _ProfilePageState extends State<ProfilePage> {
             'Malang, East Java, Indonesia',
             'On-Site',
             "Build and maintain several Mobile Applications owned by Vokanesia's partner companies such as Quantum Book Mobile and the latest version of Temu Rejeki Mobile.",
-            'Skills: Flutter and Android Development'    
+            'Skills: Flutter'    
           ),
           textBox(
             size,
@@ -176,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
             'Malang, East Java, Indonesia',
             'Remote',
             "Build and maintain several Mobile Applications for certain clients.",
-            'Skills: Flutter and Android Development'    
+            'Skills: Flutter'    
           ),
         ],
       )

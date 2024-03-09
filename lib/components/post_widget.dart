@@ -11,8 +11,9 @@ import '../providers/state_provider.dart';
 
 class PostWidget extends StatefulWidget {
   final int id;
+  final int postId;
   final bool liked;
-  const PostWidget({Key? key, required this.id, required this.liked}) : super(key: key);
+  const PostWidget({Key? key, required this.id, required this.liked, required this.postId}) : super(key: key);
 
   @override
   State<PostWidget> createState() => _PostWidgetState();
@@ -188,7 +189,7 @@ class _PostWidgetState extends State<PostWidget> {
             "You liked this post", 
             style: TextStyle(fontSize: 17, color:Colors.grey)
           ) : Text(
-            "$like likes, $comment comments", 
+            "$like likes", 
             style: const TextStyle(fontSize: 17, color:Colors.grey)
           )
         ],
@@ -225,20 +226,23 @@ class _PostWidgetState extends State<PostWidget> {
 
   Widget reactionButton(var size, IconData icon, Color color, String text) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         if(text=='Like') {
           setState(() {
             liked= !liked;
           });
           context.read<StateProvider>().like(widget.id);
         } else {
-          Navigator.push(
+          await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context)=> 
-              DataDetailPage(id: widget.id, liked: liked)
+              DataDetailPage(id: widget.id, liked: liked, postId: widget.postId)
             )
           );
+          setState(() {
+            liked= context.read<StateProvider>().data[widget.id].liked?? false;
+          });
         }
       },
       child: Container(

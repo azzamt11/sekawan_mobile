@@ -7,7 +7,8 @@ import '../models/post.dart';
 class DataDetailPage extends StatefulWidget {
   final bool liked;
   final int id;
-  const DataDetailPage({super.key, required this.id, required this.liked});
+  final int postId;
+  const DataDetailPage({super.key, required this.id, required this.liked, required this.postId});
 
   @override
   State<DataDetailPage> createState() => _DataDetailPageState();
@@ -34,13 +35,14 @@ class _DataDetailPageState extends State<DataDetailPage> {
     return Container(
       height: size.height,
       width: size.width,
-      color: Colors.black12,
+      color: Colors.white,
+      margin: const EdgeInsets.only(top: 3),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            PostWidget(id: widget.id, liked: widget.liked),
+            PostWidget(id: widget.id, liked: widget.liked, postId: widget.postId),
             SizedBox(
               height: 30,
               width: size.width,
@@ -48,7 +50,10 @@ class _DataDetailPageState extends State<DataDetailPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Semua Komentar', style: TextStyle(fontSize: 18)),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('Semua Komentar', style: TextStyle(fontSize: 18)),
+                  ),
                   SizedBox(width: 10),
                   Icon(Icons.arrow_drop_down, size: 17),
                 ],
@@ -96,11 +101,12 @@ class _DataDetailPageState extends State<DataDetailPage> {
           Container(
             width: size.width- 20- 50- 15,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(10),
               color: Colors.black12,
             ),
             padding: const EdgeInsets.all(10),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   data.name,
@@ -120,7 +126,7 @@ class _DataDetailPageState extends State<DataDetailPage> {
   }
 
   Future<void> getComments() async {
-    List<Comment> data= await DataRepository().getComments(widget.id);
+    List<Comment> data= await DataRepository().getComments(widget.postId);
     setState(() {
       comments= data;
     });

@@ -43,9 +43,10 @@ class _DataPageState extends State<DataPage> {
     List<Widget> postsWidget= [];
     int length= context.watch<StateProvider>().data.length;
     for(int i=0; i< length; i++) {
-      bool liked= context.watch<StateProvider>().data[i].liked ?? false;
+      Post data= context.watch<StateProvider>().data[i];
+      bool liked= data.liked ?? false;
       postsWidget.add(
-        PostWidget(id: i, liked: liked)
+        PostWidget(id: i, postId: data.id??0, liked: liked)
       );
     }
     return postsWidget;

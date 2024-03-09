@@ -25,9 +25,12 @@ class DataRepository {
     List<Comment> comments= await ApiClient().getComments();
     List<Comment> data= [];
     for(int i=0; i< comments.length; i++) {
-      debugPrint('debug at data_repo: id= $postId, comments[i].body= ${comments[i].body}');
+      debugPrint('debug at data_repo: id= $postId, comments[i].postId= ${comments[i].postId}, comments[i].body= ${comments[i].body}');
       if(comments[i].postId== postId) {
+        debugPrint('so it is true');
         data.add(comments[i]);
+      } else {
+        debugPrint('so... it is false');
       }
     }
 

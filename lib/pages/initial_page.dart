@@ -37,9 +37,10 @@ class _InitialPageState extends State<InitialPage> {
       height: size.height,
       width: size.width,
       child: Center(
-        child: SizedBox(
+        child: Container(
           height: 140,
           width: 140,
+          margin: const EdgeInsets.only(bottom: 50),
           child: Stack(
             children: [
               logo(),

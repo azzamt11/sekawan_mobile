@@ -75,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
           const Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-              height: 180,
+              height: 230,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

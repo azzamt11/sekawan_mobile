@@ -387,7 +387,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('Kunjungi Project', style: TextStyle(fontSize: 17)),
                         SizedBox(width: 10),
                         Icon(Icons.open_in_browser, size: 17)
                       ],
@@ -536,7 +535,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Open Resume', style: TextStyle(fontSize: 17)),
+                  Text('Kunjungi Project', style: TextStyle(fontSize: 17)),
                   SizedBox(width: 10),
                   Icon(Icons.open_in_browser, size: 17)
                 ],

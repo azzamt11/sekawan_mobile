@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:sekawan_mobile/models/post.dart';
+import 'package:sekawan_mobile/providers/state_provider.dart';
+import 'package:sekawan_mobile/services/data_repository.dart';
 
 import './data_page.dart';
 import './profile_page.dart';
@@ -106,7 +109,9 @@ class _HomePageState extends State<HomePage> {
 Widget getBody(var size) {
   return RefreshIndicator(
       onRefresh: () async{
-        //on refresh
+        List<Post> data= await DataRepository().getPosts();
+        if (!context.mounted) return;
+        await context.read<StateProvider>().setData(data);
       },
       color: Colors.white,
       child: SizedBox(

@@ -8,8 +8,6 @@ class DataRepository {
 
   Future<List<Post>> getPosts() async {
     List<Post> posts= await ApiClient().getPosts();
-    List<Comment> comments= await ApiClient().getComments();
-    debugPrint('at data_repo comments[0].body= ${comments[0].body}');
     List<User> users= await ApiClient().getUsers();
 
     for(int i=0; i< posts.length; i++) {
@@ -21,5 +19,18 @@ class DataRepository {
 
     return posts;
     
+  }
+
+  Future<List<Comment>> getComments(int postId) async {
+    List<Comment> comments= await ApiClient().getComments();
+    List<Comment> data= [];
+    for(int i=0; i< comments.length; i++) {
+      debugPrint('debug at data_repo: id= $postId, comments[i].body= ${comments[i].body}');
+      if(comments[i].postId== postId) {
+        data.add(comments[i]);
+      }
+    }
+
+    return data;
   }
 }

@@ -1,0 +1,129 @@
+import 'package:flutter/material.dart';
+import 'package:sekawan_mobile/components/post_widget.dart';
+import 'package:sekawan_mobile/services/data_repository.dart';
+
+import '../models/post.dart';
+
+class DataDetailPage extends StatefulWidget {
+  final bool liked;
+  final int id;
+  const DataDetailPage({super.key, required this.id, required this.liked});
+
+  @override
+  State<DataDetailPage> createState() => _DataDetailPageState();
+}
+
+class _DataDetailPageState extends State<DataDetailPage> {
+  List<Comment> comments= [];
+
+  @override
+  void initState() {
+    getComments();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var size= MediaQuery.of(context).size;
+    return Scaffold(
+      body: getBody(size)
+    );
+  }
+
+  Widget getBody(var size) {
+    return Container(
+      height: size.height,
+      width: size.width,
+      color: Colors.black12,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            PostWidget(id: widget.id, liked: widget.liked),
+            SizedBox(
+              height: 30,
+              width: size.width,
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('Semua Komentar', style: TextStyle(fontSize: 18)),
+                  SizedBox(width: 10),
+                  Icon(Icons.arrow_drop_down, size: 17),
+                ],
+              )
+            ),
+            comments.isEmpty
+            ? Container(
+              height: 300,
+              width: size.width,
+              color: Colors.transparent,
+              child: const Center(
+                child: Text('Tidak ada comment', style: TextStyle(fontSize: 18)),
+              )
+            ) 
+            : SizedBox(
+              width: size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: comments.map((data) => commentWidget(data, size)).toList(),
+              )
+            )
+          ],
+        )
+      ),
+    );
+  }
+
+  Widget commentWidget(Comment data, var size) {
+    return Container(
+      width: size.width,
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 25,
+            backgroundImage: NetworkImage(
+              'https://ui-avatars.com/api/?name=${data.name!.split(' ').join('+')}?background=random'
+            )
+          ),
+          const SizedBox(width: 15),
+          Container(
+            width: size.width- 20- 50- 15,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.black12,
+            ),
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Text(
+                  data.name,
+                  style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  data.body,
+                  style: const TextStyle(fontSize: 17),
+                )
+              ],
+            )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> getComments() async {
+    List<Comment> data= await DataRepository().getComments(widget.id);
+    setState(() {
+      comments= data;
+    });
+  }
+
+}

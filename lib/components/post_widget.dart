@@ -4,9 +4,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:sekawan_mobile/models/post.dart';
-import 'package:sekawan_mobile/pages/post_detail_page.dart';
-import 'package:sekawan_mobile/providers/state_provider.dart';
+
+import '../models/post.dart';
+import '../pages/data_detail_page.dart';
+import '../providers/state_provider.dart';
 
 class PostWidget extends StatefulWidget {
   final int id;
@@ -188,7 +189,7 @@ class _PostWidgetState extends State<PostWidget> {
             style: TextStyle(fontSize: 17, color:Colors.grey)
           ) : Text(
             "$like likes, $comment comments", 
-            style: TextStyle(fontSize: 17, color:Colors.grey)
+            style: const TextStyle(fontSize: 17, color:Colors.grey)
           )
         ],
       ) 
@@ -235,7 +236,7 @@ class _PostWidgetState extends State<PostWidget> {
             context,
             MaterialPageRoute(
               builder: (context)=> 
-              PostDetailPage(data: context.watch<StateProvider>().data[widget.id])
+              DataDetailPage(id: widget.id, liked: liked)
             )
           );
         }

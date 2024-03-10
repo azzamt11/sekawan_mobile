@@ -29,21 +29,66 @@ class _ProfilePageState extends State<ProfilePage> {
       height: size.height,
       width: size.width,
       color: Colors.black12,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            header(size),
-            about(size),
-            experiences(size),
-            educations(size),
-            projects(size),
-            independentProjects(size),
-            skills(size),
-            resume(size)
-          ],
+      child: Column(
+        children: [
+          superHeader(size),
+          SizedBox(
+            height: size.height- 90,
+            width: size.width,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  header(size),
+                  about(size),
+                  experiences(size),
+                  educations(size),
+                  projects(size),
+                  independentProjects(size),
+                  skills(size),
+                  resume(size)
+                ],
+              )
+            )
+          )
+        ],
+      )
+    );
+  }
+
+  Widget superHeader(size) {
+    return Container(
+      height: 40,
+      width: size.width,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(width: 1, color: Colors.grey)
         )
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            'MtY Profile', 
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+          ),
+          InkWell(
+            onTap: () {
+              //do nothing
+            },
+            child: const SizedBox(
+              height: 30,
+              width: 30,
+              child: Icon(
+                Icons.more_horiz, size: 20,
+              )
+            )
+          )
+        ],
       )
     );
   }
@@ -125,7 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           Text(
             'I am a mathematician, self-taught mobile developer, and also computer science enthusiast. I have strong skill and passion in computer science especially in software engineering. I am in progress of pursuing my dream to be an artificial intelligence research scientist.',
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(fontSize: 14),
           ),
         ],
       )

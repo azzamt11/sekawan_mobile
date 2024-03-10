@@ -32,12 +32,57 @@ class _DataPageState extends State<DataPage> {
       height: size.height,
       width: size.width,
       color: Colors.black12,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: getPosts(size),
+      child: Column(
+        children: [
+          getHeader(size),
+          SizedBox(
+            height: size.height- 90,
+            width: size.width,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: getPosts(size),
+              )
+            )
+          )
+        ],
+      )
+    );
+  }
+
+  Widget getHeader(size) {
+    return Container(
+      height: 40,
+      width: size.width,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(width: 1, color: Colors.grey)
         )
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            'Posts', 
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+          ),
+          InkWell(
+            onTap: () {
+              //do nothing
+            },
+            child: const SizedBox(
+              height: 30,
+              width: 30,
+              child: Icon(
+                Icons.more_horiz, size: 20,
+              )
+            )
+          )
+        ],
       )
     );
   }

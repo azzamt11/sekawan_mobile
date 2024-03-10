@@ -103,13 +103,13 @@ class _HomePageState extends State<HomePage> {
               )
             )
           ])
-      );
-    },
-  );
-}
+        );
+      },
+    );
+  }
 
-Widget getBody(var size) {
-  return RefreshIndicator(
+  Widget getBody(var size) {
+    return RefreshIndicator(
       onRefresh: () async{
         List<Post> data= await DataRepository().getPosts();
         if (!context.mounted) return;
@@ -121,7 +121,7 @@ Widget getBody(var size) {
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-              height: size.height- 40,
+              height: size.height,
               width: size.width,
               child: IndexedStack(
                 key: ValueKey<int>(activeTab),
@@ -133,38 +133,6 @@ Widget getBody(var size) {
               )
             ),
           ),
-          Container(
-            height: 40,
-            width: size.width,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(width: 1, color: Colors.grey)
-              )
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  'Posts', 
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                ),
-                GestureDetector(
-                  onTap: () {
-                    //do nothing
-                  },
-                  child: const SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Icon(
-                      Icons.more, size: 20,
-                    )
-                  )
-                )
-              ],
-            )
-          )
         ],
       )
     );

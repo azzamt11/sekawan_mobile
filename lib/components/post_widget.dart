@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sekawan_mobile/components/avatar.dart';
 
 import '../models/post.dart';
 import '../pages/data_detail_page.dart';
@@ -95,12 +96,9 @@ class _PostWidgetState extends State<PostWidget> {
       width: 45,
       child: Stack(
         children: [
-          CircleAvatar(
+          Avatar(
             radius: 22.5,
-            backgroundImage: NetworkImage(
-              data.user.photo
-              ?? 'https://ui-avatars.com/api/?name=${data.user.name!.split(' ').join('+')}?background=random'
-            ),
+            url: 'https://ui-avatars.com/api/?name=${data.user.name!.split(' ').join('+')}?background=random'
           ),
           Positioned(
             bottom: 8,
@@ -180,11 +178,11 @@ class _PostWidgetState extends State<PostWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          like> 0 
+          liked
           ? const Icon(FontAwesomeIcons.heart, color: Colors.red, size: 17) 
           :  const Icon(FontAwesomeIcons.heart, color: Colors.grey, size: 17),
           const SizedBox(width: 10),
-          like> 0? const Text(
+          liked? const Text(
             "You liked this post", 
             style: TextStyle(fontSize: 12, color:Colors.grey)
           ) : Text(

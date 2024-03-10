@@ -44,7 +44,8 @@ class _HomePageState extends State<HomePage> {
           );
         }
       },
-      child: SizedBox(
+      child: SafeArea(
+        child: SizedBox(
         height: size.height,
         width: size.width,
         child: Stack(
@@ -57,6 +58,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         )
+      )
       )
     );
   }
@@ -114,17 +116,56 @@ Widget getBody(var size) {
         await context.read<StateProvider>().setData(data);
       },
       color: Colors.white,
-      child: SizedBox(
-        height: size.height,
-        width: size.width,
-        child: IndexedStack(
-          key: ValueKey<int>(activeTab),
-          index: activeTab,
-          children: const [
-            DataPage(),
-            ProfilePage()
-          ],
-        )
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              height: size.height- 40,
+              width: size.width,
+              child: IndexedStack(
+                key: ValueKey<int>(activeTab),
+                index: activeTab,
+                children: const [
+                  DataPage(),
+                  ProfilePage()
+                ],
+              )
+            ),
+          ),
+          Container(
+            height: 40,
+            width: size.width,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(width: 1, color: Colors.grey)
+              )
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  'Posts', 
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                ),
+                GestureDetector(
+                  onTap: () {
+                    //do nothing
+                  },
+                  child: const SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: Icon(
+                      Icons.more, size: 20,
+                    )
+                  )
+                )
+              ],
+            )
+          )
+        ],
       )
     );
   }

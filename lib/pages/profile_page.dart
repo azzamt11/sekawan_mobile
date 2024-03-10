@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sekawan_mobile/components/avatar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -16,7 +17,10 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     var size= MediaQuery.of(context).size;
     return Scaffold(
-      body: getBody(size)
+      body: PopScope(
+        onPopInvoked: popFunction,
+        child: getBody(size)
+      )
     );
   }
 
@@ -65,10 +69,10 @@ class _ProfilePageState extends State<ProfilePage> {
             alignment: Alignment.topCenter,
             child: Padding(
               padding: EdgeInsets.only(top: 40),
-              child: CircleAvatar(
+              child: Avatar(
                 radius: 45,
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage('author.jpg')
+                image: 'assets/author.jpg',
+                url: 'assets/author.jpg'
               ),
             )
           ),
@@ -419,9 +423,10 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            child: CircleAvatar(
+            child: Avatar(
               radius: 20,
-              backgroundImage: AssetImage(image)
+              image: image,
+              url: image
             ),
           ),
           Container(
@@ -505,9 +510,10 @@ class _ProfilePageState extends State<ProfilePage> {
             width: size.width,
             child: Row(
               children: [
-                CircleAvatar(
+                Avatar(
                   radius: 15,
-                  backgroundImage: AssetImage(image)
+                  image: image,
+                  url: image
                 ),
                 const SizedBox(width: 10),
                 Text(
@@ -559,9 +565,10 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            child: CircleAvatar(
+            child: Avatar(
               radius: 15,
-              backgroundImage: AssetImage(image)
+              image: image,
+              url: image
             ),
           ),
           Container(
@@ -595,6 +602,10 @@ class _ProfilePageState extends State<ProfilePage> {
     )) {
       throw Exception('Could not launch $url');
     }
+  }
+
+  void popFunction(bool param) {
+    //do nothing
   }
   
 }

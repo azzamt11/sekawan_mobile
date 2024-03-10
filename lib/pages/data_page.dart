@@ -20,7 +20,10 @@ class _DataPageState extends State<DataPage> {
   Widget build(BuildContext context) {
     var size= MediaQuery.of(context).size;
     return Scaffold(
-      body: getBody(size)
+      body: PopScope(
+        onPopInvoked: popFunction,
+        child: getBody(size)
+      )
     );
   }
 
@@ -50,5 +53,9 @@ class _DataPageState extends State<DataPage> {
       );
     }
     return postsWidget;
+  }
+
+  void popFunction(bool param) {
+    //do nothing
   }
 }

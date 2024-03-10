@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sekawan_mobile/components/avatar.dart';
 import 'package:sekawan_mobile/components/post_widget.dart';
 import 'package:sekawan_mobile/services/data_repository.dart';
 
@@ -52,7 +53,7 @@ class _DataDetailPageState extends State<DataDetailPage> {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text('Semua Komentar', style: TextStyle(fontSize: 18)),
+                    child: Text('Semua Komentar', style: TextStyle(fontSize: 15)),
                   ),
                   SizedBox(width: 10),
                   Icon(Icons.arrow_drop_down, size: 17),
@@ -65,7 +66,7 @@ class _DataDetailPageState extends State<DataDetailPage> {
               width: size.width,
               color: Colors.transparent,
               child: const Center(
-                child: Text('Tidak ada comment', style: TextStyle(fontSize: 18)),
+                child: Text('Tidak ada comment', style: TextStyle(fontSize: 15)),
               )
             ) 
             : SizedBox(
@@ -86,22 +87,20 @@ class _DataDetailPageState extends State<DataDetailPage> {
     return Container(
       width: size.width,
       padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            radius: 25,
-            backgroundImage: NetworkImage(
-              'https://ui-avatars.com/api/?name=${data.name!.split(' ').join('+')}?background=random'
-            )
+          Avatar(
+            radius: 20,
+            url: 'https://ui-avatars.com/api/?name=${data.name!.split(' ').join('+')}?background=random'
           ),
-          const SizedBox(width: 15),
+          const SizedBox(width: 10),
           Container(
-            width: size.width- 20- 50- 15,
+            width: size.width- 20- 50- 10,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(7),
               color: Colors.black12,
             ),
             padding: const EdgeInsets.all(10),
@@ -110,12 +109,12 @@ class _DataDetailPageState extends State<DataDetailPage> {
               children: [
                 Text(
                   data.name,
-                  style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Text(
                   data.body,
-                  style: const TextStyle(fontSize: 17),
+                  style: const TextStyle(fontSize: 12),
                 )
               ],
             )

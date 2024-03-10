@@ -73,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
-            'MtY Profile', 
+            'My Profile', 
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
           ),
           InkWell(
@@ -105,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
             width: size.width,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('background.jpg'),
+                image: AssetImage('assets/background.jpg'),
                 fit: BoxFit.cover
               ),
             ),
@@ -195,7 +195,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           textBox(
             size,
-            'jojonomic.png',
+            'assets/jojonomic.png',
             'Mobile Developer',
             'Jojonomic - The Future of Work . Fulltime',
             'Dec 2023 - March -2024',
@@ -206,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           textBox(
             size,
-            'vokanesia.jpeg',
+            'assets/vokanesia.jpeg',
             'Mobile Programmer',
             'PT Vokasi Indonesia Sejahtera . Fulltime',
             'Oct 2022 - Aug -2023',
@@ -217,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           textBox(
             size,
-            'freelance.png',
+            'assets/freelance.png',
             'Mobile Programmer',
             'Freelance . Fulltime',
             'Aug 2022 - Sept -2023',
@@ -249,7 +249,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           textBox(
             size,
-            'uin.jpg',
+            'assets/uin.jpg',
             'Universitas Islam Negeri Maulana Malik Ibrahim Malang',
             'Bachelor of Science - Mathematics',
             'Aug 2014 - Oct -2019',
@@ -282,7 +282,7 @@ class _ProfilePageState extends State<ProfilePage> {
           projectsTextBox(
             size,
             'QuantumBook Mobile',
-            'vokanesia.jpeg',
+            'assets/vokanesia.jpeg',
             'Jan 2023 - Aug 2023',
             'Associated with Vokanesia',
             'https://play.google.com/store/apps/details?id=id.quantumbook&hl=en_US&pli=1'
@@ -290,7 +290,7 @@ class _ProfilePageState extends State<ProfilePage> {
           projectsTextBox(
             size,
             'TemuRejeki Mobile',
-            'vokanesia.jpeg',
+            'assets/vokanesia.jpeg',
             'April 2023 - Aug 2023',
             'Associated with Vokanesia',
             'https://play.google.com/store/apps/details?id=com.temurejeki&hl=en&gl=US'
@@ -319,7 +319,7 @@ class _ProfilePageState extends State<ProfilePage> {
           projectsTextBox(
             size,
             'Traveloka Mobile Clone',
-            'flutter.png',
+            'assets/flutter.png',
             'Sept 2023',
             'Framework: Flutter',
             'https://azzamtmcweb.netlify.app'
@@ -327,7 +327,7 @@ class _ProfilePageState extends State<ProfilePage> {
           projectsTextBox(
             size,
             'Snake And Ladder Game',
-            'htmlcss.png',
+            'assets/htmlcss.png',
             'Aug 2023',
             'Framework: Web Vanila',
             'https://azzamminiapps.netlify.app/snake-and-ladder'
@@ -335,7 +335,7 @@ class _ProfilePageState extends State<ProfilePage> {
           projectsTextBox(
             size,
             'Undraggable Tennis Game',
-            'flutter.png',
+            'assets/flutter.png',
             'June 2023',
             'Framework: Flutter with Firebase',
             'https://azzamtennisgamewebversion1.netlify.app'
@@ -363,31 +363,31 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           skillsTextBox(
             size,
-            'flutter.png',
+            'assets/flutter.png',
             'Flutter/Dart',
             'Level: Advanced' 
           ),
           skillsTextBox(
             size,
-            'javascript.png',
+            'assets/javascript.png',
             'JavaScript',
             'Level: Intermediate' 
           ),
           skillsTextBox(
             size,
-            'react.png',
+            'assets/react.png',
             'React.js',
             'Level: Intermediate' 
           ),
           skillsTextBox(
             size,
-            'laravel.png',
+            'assets/laravel.png',
             'PHP/Laravel',
             'Level: Intermediate' 
           ),
           skillsTextBox(
             size,
-            'htmlcss.png',
+            'assets/htmlcss.png',
             'HTML/CSS',
             'Level: Intermediate' 
           ),

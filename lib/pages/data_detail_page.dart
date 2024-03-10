@@ -28,7 +28,9 @@ class _DataDetailPageState extends State<DataDetailPage> {
   Widget build(BuildContext context) {
     var size= MediaQuery.of(context).size;
     return Scaffold(
-      body: getBody(size)
+      body: SafeArea(
+        child: getBody(size)
+      )
     );
   }
 

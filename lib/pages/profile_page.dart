@@ -46,13 +46,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget header(var size) {
     return Container(
-      height: 410,
+      height: 300,
       width: size.width,
       color: Colors.white,
       child: Stack(
         children: [
           Container(
-            height: 150,
+            height: 100,
             width: size.width,
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -64,9 +64,9 @@ class _ProfilePageState extends State<ProfilePage> {
           const Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: EdgeInsets.only(top: 70),
+              padding: EdgeInsets.only(top: 40),
               child: CircleAvatar(
-                radius: 60,
+                radius: 45,
                 backgroundColor: Colors.white,
                 backgroundImage: AssetImage('author.jpg')
               ),
@@ -75,26 +75,26 @@ class _ProfilePageState extends State<ProfilePage> {
           const Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-              height: 230,
+              height: 180,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Abdullah Azzam',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                   Text(
                     'Mobile Developer | Programmer | Mathematician | Computer Science Enthusiast',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                   Text(
                     'Universitas Islam Negeri Maulana Malik Ibrahim Malang',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 15),
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -110,18 +110,18 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       color: Colors.white,
       width: size.width,
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       margin: const EdgeInsets.only(top: 10),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'About',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           Text(
             'I am a mathematician, self-taught mobile developer, and also computer science enthusiast. I have strong skill and passion in computer science especially in software engineering. I am in progress of pursuing my dream to be an artificial intelligence research scientist.',
-            style: TextStyle(fontSize: 17),
+            style: TextStyle(fontSize: 15),
           ),
         ],
       )
@@ -132,8 +132,8 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       width: size.width,
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.only(top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -141,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: const Text(
               'Experiences',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           textBox(
@@ -186,8 +186,8 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       width: size.width,
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.only(top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -195,7 +195,7 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: const Text(
               'Educations',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           textBox(
@@ -218,8 +218,8 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       width: size.width,
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.only(top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -227,7 +227,7 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: const Text(
               'Projects',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           projectsTextBox(
@@ -255,8 +255,8 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       width: size.width,
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.only(top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -264,7 +264,7 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: const Text(
               'Independent Projects',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           projectsTextBox(
@@ -300,8 +300,8 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       width: size.width,
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.only(top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -309,7 +309,7 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: const Text(
               'Skills',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           skillsTextBox(
@@ -351,14 +351,14 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       color: Colors.white,
       width: size.width,
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      margin: const EdgeInsets.only(top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
             'Resume',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 100,
@@ -369,7 +369,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 const Text(
                   'Download my resume here...',
-                  style: TextStyle(fontSize: 17),
+                  style: TextStyle(fontSize: 15),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -377,9 +377,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                   child: Container(
                     width: 200,
-                    height: 35,
+                    height: 30,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(17.5),
+                      borderRadius: BorderRadius.circular(15),
                       border: Border.all(width: 1, color: Colors.grey),
                     ),
                     child: const Row(
@@ -387,7 +387,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(width: 10),
-                        Icon(Icons.open_in_browser, size: 17)
+                        Icon(Icons.open_in_browser, size: 15)
                       ],
                     )
                   )
@@ -420,7 +420,7 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           SizedBox(
             child: CircleAvatar(
-              radius: 30,
+              radius: 20,
               backgroundImage: AssetImage(image)
             ),
           ),
@@ -433,43 +433,42 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 Text(
                     title,
-                    style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   subtitle,
-                  style: const TextStyle(fontSize: 17),
+                  style: const TextStyle(fontSize: 12),
                 ),
                 Text(
                   period,
-                  style: const TextStyle(fontSize: 17, color: Colors.grey),
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 Text(
                   location,
-                  style: const TextStyle(fontSize: 17, color: Colors.grey),
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
                 Text(
                   jobdesc,
-                  style: const TextStyle(fontSize: 17),
+                  style: const TextStyle(fontSize: 12),
                 ),
-                skills!= ''? const SizedBox(height: 30) : const SizedBox(),
+                skills!= ''? const SizedBox(height: 20) : const SizedBox(),
                 skills!= ''? SizedBox(
-                  height: 30,
+                  height: 20,
                   width: size.width- 150,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Icon(FontAwesomeIcons.diamond, size: 10, color: Colors.blue),
+                      const Icon(FontAwesomeIcons.diamond, size: 7, color: Colors.blue),
                       const SizedBox(width: 10),
                       Text(
                         skills,
-                        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                     ],
                   )
                 ) : const SizedBox(),
-                const SizedBox(height: 15),
               ],
             )
           )
@@ -495,11 +494,11 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Text(
               title,
-              style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           Text(
             period,
-            style: const TextStyle(fontSize: 17),
+            style: const TextStyle(fontSize: 12),
           ),
           const SizedBox(height: 10),
           SizedBox(
@@ -507,36 +506,36 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Row(
               children: [
                 CircleAvatar(
-                  radius: 20,
+                  radius: 15,
                   backgroundImage: AssetImage(image)
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 10),
                 Text(
                   jobdesc,
-                  style: const TextStyle(fontSize: 17),
+                  style: const TextStyle(fontSize: 12),
                 ),
               ],
             )
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           GestureDetector(
             onTap: () {
               _launchInBrowser(Uri.parse(url));
             },
             child: Container(
               width: 200,
-              height: 35,
+              height: 25,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(17.5),
+                borderRadius: BorderRadius.circular(7),
                 border: Border.all(width: 1, color: Colors.grey),
               ),
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Kunjungi Project', style: TextStyle(fontSize: 17)),
+                  Text('Kunjungi Project', style: TextStyle(fontSize: 12)),
                   SizedBox(width: 10),
-                  Icon(Icons.open_in_browser, size: 17)
+                  Icon(Icons.open_in_browser, size: 12)
                 ],
               )
             )
@@ -561,26 +560,26 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           SizedBox(
             child: CircleAvatar(
-              radius: 30,
+              radius: 15,
               backgroundImage: AssetImage(image)
             ),
           ),
           Container(
             width: size.width- 150,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                     title,
-                    style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   subtitle,
-                  style: const TextStyle(fontSize: 17),
+                  style: const TextStyle(fontSize: 12),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 5),
               ],
             )
           )

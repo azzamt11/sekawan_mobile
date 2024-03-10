@@ -52,14 +52,14 @@ class _PostWidgetState extends State<PostWidget> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       margin: const EdgeInsets.symmetric(vertical: 7),
-      height: 100,
+      height: 50,
       width: size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: 100, 
+            height: 50, 
             width: max(size.width- 200, 300),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -76,10 +76,10 @@ class _PostWidgetState extends State<PostWidget> {
               getFloatingSnackBar(size, 'Mohon maaf, fitur ini belum tersedia', context);
             },
             child: const SizedBox(
-              height: 50,
-              width: 50,
+              height: 35,
+              width: 35,
               child: Center(
-                child: Icon(Icons.share, size: 25)
+                child: Icon(Icons.share, size: 20)
               )
             )
           )
@@ -91,12 +91,12 @@ class _PostWidgetState extends State<PostWidget> {
   Widget avatar() {
     Post data= context.watch<StateProvider>().data[widget.id];
     return SizedBox(
-      height: 61,
-      width: 61,
+      height: 45,
+      width: 45,
       child: Stack(
         children: [
           CircleAvatar(
-            radius: 30.5,
+            radius: 22.5,
             backgroundImage: NetworkImage(
               data.user.photo
               ?? 'https://ui-avatars.com/api/?name=${data.user.name!.split(' ').join('+')}?background=random'
@@ -106,11 +106,11 @@ class _PostWidgetState extends State<PostWidget> {
             bottom: 8,
             right: 5,
             child: Container(
-              height: 10,
-              width: 10,
+              height: 7,
+              width: 7,
               decoration: BoxDecoration(
                 color: Colors.green,
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(3.5),
               ),
             )
           )
@@ -128,17 +128,17 @@ class _PostWidgetState extends State<PostWidget> {
         children: [
           Text(
             data.user.name?? "user-${data.user.id.toString()}",
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)
           ),
           SizedBox(
-            height: 30,
+            height: 20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
                   '1 Jan 2024',
-                  style: TextStyle(fontSize: 17, color: Colors.grey)
+                  style: TextStyle(fontSize: 12, color: Colors.grey)
                 ),
                 Container(
                   height: 2,
@@ -149,7 +149,7 @@ class _PostWidgetState extends State<PostWidget> {
                     color: Colors.grey,
                   ),
                 ),
-                const Icon(FontAwesomeIcons.globe, size: 15, color: Colors.grey)
+                const Icon(FontAwesomeIcons.globe, size: 13, color: Colors.grey)
               ],
             )
           )
@@ -164,7 +164,7 @@ class _PostWidgetState extends State<PostWidget> {
       padding: const EdgeInsets.all(10),
       child: Text(
         context.watch<StateProvider>().data[widget.id].body?? 'Empty',
-        style: const TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 15),
         textAlign: TextAlign.left,
       ),
     );
@@ -172,9 +172,8 @@ class _PostWidgetState extends State<PostWidget> {
 
   Widget mini(var size)  {
     int like= context.watch<StateProvider>().data[widget.id].like?? 0;
-    int comment= context.watch<StateProvider>().data[widget.id].comment?? 0;
     return Container(
-      height: 30,
+      height: 20,
       width: size.width,
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
@@ -187,10 +186,10 @@ class _PostWidgetState extends State<PostWidget> {
           const SizedBox(width: 10),
           like> 0? const Text(
             "You liked this post", 
-            style: TextStyle(fontSize: 17, color:Colors.grey)
+            style: TextStyle(fontSize: 12, color:Colors.grey)
           ) : Text(
             "$like likes", 
-            style: const TextStyle(fontSize: 17, color:Colors.grey)
+            style: const TextStyle(fontSize: 12, color:Colors.grey)
           )
         ],
       ) 
@@ -199,9 +198,9 @@ class _PostWidgetState extends State<PostWidget> {
 
   Widget reaction(var size) {
     return Container(
-      height: 50,
+      height: 35,
       width: size.width,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -246,10 +245,10 @@ class _PostWidgetState extends State<PostWidget> {
         }
       },
       child: Container(
-        height: 40,
+        height: 30,
         width: size.width/2- 12.5,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.5),
+          borderRadius: BorderRadius.circular(6),
           color: Colors.white,
           border: Border.all(width: 1, color: Colors.grey)
         ),
@@ -259,14 +258,14 @@ class _PostWidgetState extends State<PostWidget> {
           children: [
             Icon(
               icon, 
-              size: 20, 
+              size: 16, 
               color: color
             ),
             const SizedBox(width: 10),
             Text(
               text, 
               style: TextStyle(
-                fontSize: 17, 
+                fontSize: 15, 
                 color: text== 'Like' && liked? Colors.red: Colors.black
               )
             )

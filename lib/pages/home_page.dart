@@ -68,13 +68,13 @@ class _HomePageState extends State<HomePage> {
       duration: const Duration(milliseconds: 300),
       builder: (BuildContext context, double position, Widget? child) {
         return SizedBox(
-          height: 60 - position,
+          height: 50 - position,
           width: size.width,
           child: Stack(children: [
             Positioned(
               top: 0,
               child: Container(
-                height: 59,
+                height: 50,
                 width: size.width,
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -137,8 +137,8 @@ Widget getBody(var size) {
         });
       },
       child: Container(
-        height: 50,
-        width: 50,
+        height: 40,
+        width: 40,
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -160,7 +160,7 @@ Widget getBody(var size) {
           color: isActive
               ? Colors.deepPurple
               : Colors.black,
-          size: 27
+          size: 22
       ),
       Text(
           text,
@@ -170,7 +170,7 @@ Widget getBody(var size) {
               color: isActive
                   ? Colors.deepPurple
                   : Colors.black,
-              fontSize: 12
+              fontSize: 10
           )
       ),
     ];
